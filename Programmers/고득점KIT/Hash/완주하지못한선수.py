@@ -1,5 +1,5 @@
 # Programmers_완주하지 못한 선수_Level 2
-
+##
 def solution(participant, completion):
     answer = ''
     
