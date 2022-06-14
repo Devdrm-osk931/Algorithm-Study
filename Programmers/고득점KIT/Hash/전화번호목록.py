@@ -20,18 +20,14 @@ tests = [
 for test in tests:
     print(solution(test))
 '''
-
 # 효율성 테스트 통과 X
 # 채점 결과
 # 정확성: 83.3
 # 효율성: 8.3
 # 합계: 91.7 / 100.0
-
 def solution(phone_book):
     answer = True
-
     phone_book.sort()
-
     for i in range(len(phone_book) - 1):
         base = phone_book[i]
         for j in range(i + 1, len(phone_book)):
@@ -39,5 +35,4 @@ def solution(phone_book):
                 answer = False
                 return answer
     return answer
-
 '''
