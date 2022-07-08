@@ -1,5 +1,6 @@
 answer = 0
 
+
 def make_comb(numbers, comb, target):
     global answer
     if len(comb) == len(numbers):
