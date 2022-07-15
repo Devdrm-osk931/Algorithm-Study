@@ -1,5 +1,4 @@
 # 10진수 숫자 n을 k진수로 변환한다
-from math import ceil, sqrt
 def radix_transform(n, k):
     result = []
 
@@ -11,7 +10,7 @@ def radix_transform(n, k):
     return "".join(map(str, (result[::-1])))
 
 def is_prime(n):
-    for divisor in range(2, int(sqrt(n)) + 1):
+    for divisor in range(2, int(n ** (1/2)) + 1):
         if n % divisor == 0:
             return False
     return True
