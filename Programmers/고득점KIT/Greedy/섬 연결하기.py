@@ -12,7 +12,8 @@ def solution(n, costs):
             if cost[0] in routes or cost[1] in routes:
                 answer += cost[2]
                 routes.update([cost[0], cost[1]])
-
+                costs[i] = [-1, -1, -1]
+                break
 
     return answer
 
