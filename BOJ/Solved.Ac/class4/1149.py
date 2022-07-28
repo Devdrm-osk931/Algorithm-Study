@@ -6,6 +6,9 @@
 - N번 집의 색은 N-1번 집의 색과 같지 않아야 한다.
 - i(2 ≤ i ≤ N-1)번 집의 색은 i-1번, i+1번 집의 색과 같지 않아야 한다.
 """
+
+"""
+완전탐색을 통해 가능한 조합들을 다 찾은 뒤 최소 값을 구하는 방법 - 시간초과
 import sys
 
 N = int(input())
@@ -30,6 +33,26 @@ def dfs(depth):
             dfs(depth + 1)
             case.pop()
 
-
 dfs(0)
 print(minimum_cost)
+"""
+
+"""
+DP
+"""
+import sys
+si = sys.stdin.readline
+
+n = int(si())
+# 최소 케이스를 담고있는 2-D List
+RGB = [
+    list(map(int, si().strip().split()))
+    for _ in range(n)
+]
+
+for i in range(1, n):
+    RGB[i][0] = min(RGB[i-1][1], RGB[i-1][2]) + RGB[i][0]
+    RGB[i][1] = min(RGB[i-1][0], RGB[i-1][2]) + RGB[i][1]
+    RGB[i][2] = min(RGB[i-1][0], RGB[i-1][1]) + RGB[i][2]
+
+print(min(RGB[n-1]))
