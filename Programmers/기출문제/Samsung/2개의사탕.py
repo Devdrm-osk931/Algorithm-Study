@@ -1,5 +1,6 @@
 # Codetree
 # 삼성 SW 역량테스트 2015 하반기 2번
+# https://www.codetree.ai/frequent-problems/two-candies/description
 
 # Variables
 OUT_OF_MAP = (n, m)
