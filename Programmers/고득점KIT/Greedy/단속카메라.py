@@ -1,21 +1,18 @@
-import sys
 def solution(routes):
     answer = 0
-    start, end = sys.maxsize, -sys.maxsize
 
-    for in_time, out_time in routes:
-        start = min(start, in_time)
-        end = max(end, out_time)
+    routes.sort(key=lambda x: x[1])
 
-    OFFSET = abs(start)
-    N = end - start + 1
+    location = -30_001
 
-    check = [0] * N
+    for route in routes:
+        if route[0] <= location:
+            continue
 
-    for in_time, out_time in routes:
-        for time in range(in_time + OFFSET, out_time + OFFSET + 1):
-            check[time] += 1
-    print(check)
+        else:
+            location = route[1]
+            answer += 1
+
     return answer
 
-solution([[-20,-15], [-14,-5], [-18,-13], [-5,-3]])
+# print(solution([[-20,-15], [-14,-5], [-18,-13], [-5,-3]]))
