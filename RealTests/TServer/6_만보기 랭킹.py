@@ -29,7 +29,7 @@ def solution(steps_one, names_one, steps_two, names_two, steps_three, names_thre
     returnanswer = []
     for person in answer:
         returnanswer.append(person[0])
-    print(returnanswer)
+
     return returnanswer
 
 solution(
