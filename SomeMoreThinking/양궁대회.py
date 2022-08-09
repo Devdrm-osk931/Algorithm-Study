@@ -1,3 +1,7 @@
+"""
+./RealTests/2022KAKAO_BLIND
+"""
+
 from itertools import product
 
 
