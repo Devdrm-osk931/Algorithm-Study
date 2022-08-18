@@ -58,14 +58,11 @@ while True:
     time += 1  # 움직인 시점에 시간을 늘려준다
 
     if can_go(new_x, new_y):  # 만약 새로운 지점이 이동이 가능한 지점이라면 -> 벽도 아니고 내 몸의 일부도 아니라면
-        if graph[new_x][new_y] == APPLE:
-            # 사과를 섭취하고 팝을 수행하지 않는다
-            graph[new_x][new_y] = SNAKE
-        else:
+        if graph[new_x][new_y] != APPLE:
             # 이동을 하고 꼬리에 있던 자리를 없애줌 - pop
             tail_x, tail_y = positions.popleft()
-            graph[new_x][new_y] = SNAKE
             graph[tail_x][tail_y] = BLANK
+        graph[new_x][new_y] = SNAKE
         positions.append((new_x, new_y))
 
     else:
