@@ -28,6 +28,8 @@ def solution(pairs):
                     score += 3
                 else:
                     score += 1
+            if prev_dist > 3:
+                return score
             
             if prev_node in tree:
                 for next_node in tree[prev_node]:
