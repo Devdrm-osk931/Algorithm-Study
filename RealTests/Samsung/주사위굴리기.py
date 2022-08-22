@@ -82,7 +82,6 @@ def move_dice(move_dir):
         print(dice['Top'])
 
 
-
 def simulate():
     # 맨 처음 위치 처리
     copy()
