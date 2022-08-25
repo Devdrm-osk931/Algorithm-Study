@@ -1,13 +1,39 @@
-#BOJ_Class4_10830_행렬 제곱_Gold4
+import sys
 
-# 고속 거듭제곱 알고리즘 뢰직을 사용하면 보다 효율적으로 해결할 수 있을것 같다
+input = sys.stdin.readline
 
-n, b = tuple(map(int, input().split()))
-
-matrix = [
-    list(map(int, input().split()))
-    for _ in range(n)
-]
+N, B = map(int, input().split())
+A = [[*map(int, input().split())] for _ in range(N)]
 
 
+def mul(U, V):
+    n = len(U)
+    Z = [[0] * n for _ in range(n)]
 
+    for row in range(n):
+        for col in range(n):
+            e = 0
+            for i in range(n):
+                e += U[row][i] * V[i][col]
+            Z[row][col] = e % 1000
+
+    return Z
+
+
+def square(A, B):
+    if B == 1:
+        for x in range(len(A)):
+            for y in range(len(A)):
+                A[x][y] %= 1000
+        return A
+
+    tmp = square(A, B // 2)
+    if B % 2:
+        return mul(mul(tmp, tmp), A)
+    else:
+        return mul(tmp, tmp)
+
+
+result = square(A, B)
+for r in result:
+    print(*r)
