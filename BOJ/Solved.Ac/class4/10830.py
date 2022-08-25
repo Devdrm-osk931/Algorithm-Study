@@ -1,39 +1,44 @@
-import sys
-
-input = sys.stdin.readline
-
-N, B = map(int, input().split())
-A = [[*map(int, input().split())] for _ in range(N)]
+n, exp = tuple(map(int, input().split()))
 
 
-def mul(U, V):
-    n = len(U)
-    Z = [[0] * n for _ in range(n)]
-
-    for row in range(n):
-        for col in range(n):
-            e = 0
-            for i in range(n):
-                e += U[row][i] * V[i][col]
-            Z[row][col] = e % 1000
-
-    return Z
+def int_and_mod(n):
+    return int(n) % 1000
 
 
-def square(A, B):
-    if B == 1:
-        for x in range(len(A)):
-            for y in range(len(A)):
-                A[x][y] %= 1000
-        return A
+matrix = [
+    list(map(int_and_mod, input().split()))
+    for _ in range(n)
+]
 
-    tmp = square(A, B // 2)
-    if B % 2:
-        return mul(mul(tmp, tmp), A)
+
+def multiply(arr1, arr2):
+    result = [
+        [0] * n
+        for _ in range(n)
+    ]
+
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                result[i][j] += arr1[i][k] * arr2[k][j]
+            result[i][j] = result[i][j] % 1000
+
+    return result
+
+
+def power(arr, n):
+    if n == 1:
+        return arr
     else:
-        return mul(tmp, tmp)
+        tmp = power(arr, n//2)
+        if n % 2 != 0:
+            return multiply(multiply(tmp, tmp), arr)
+        else:
+            return multiply(tmp, tmp)
 
 
-result = square(A, B)
-for r in result:
-    print(*r)
+answer = power(matrix, exp)
+for row in answer:
+    for elem in row:
+        print(elem, end=' ')
+    print()
