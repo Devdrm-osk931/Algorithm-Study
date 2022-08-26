@@ -21,13 +21,6 @@ visited = [
 ]
 
 
-def print_arr(array):
-    for row in array:
-        for elem in row:
-            print(elem, end=' ')
-        print()
-
-
 def count_visited():
     print(len([
         (i, j)
@@ -35,6 +28,7 @@ def count_visited():
         for j in range(m)
         if visited[i][j]
     ]))
+
 
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < m
