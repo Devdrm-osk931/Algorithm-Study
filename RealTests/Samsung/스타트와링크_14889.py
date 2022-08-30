@@ -2,29 +2,48 @@
 # 14889 스타트와 링크 (Silver2)
 
 n = int(input())
+synergies = [list(map(int, input().split())) for _ in range(n)]
+link = [False for _ in range(n)]
 
-synergy = [
-    list(map(int, input().split()))
-    for _ in range(n)
-]
+answer = 1e9
 
-min_diff = 1e9
+def calculate():
+    global answer
 
-people = [i for i in range(n)]
-start = []
+    start_synergy = sum([
+        synergies[i][j]
+        for i in range(n)
+        for j in range(n)
+        if not link[i] and not link[j]
+    ])
 
-# idx번째 요소를 start 팀에 배치하는 함수
-def pick_start(cnt, idx):
+    link_synergy = sum([
+        synergies[i][j]
+        for i in range(n)
+        for j in range(n)
+        if link[i] and link[j]
+
+    ])
+
+    answer = min(answer, abs(start_synergy - link_synergy))
+
+
+def make_combination(cnt, idx):
     if cnt == n//2:
-        print(start)
+        calculate()
         return
-
+    
     if idx == n:
         return
+    
+    # idx를 start팀에 넣는 경우
+    make_combination(cnt, idx + 1)
 
-    start.append(idx)
-    for i in range(idx + 1, n):
-        pick_start(cnt + 1, i)
-    start.pop()
+    # idx를 link팀에 넣는 경우
+    link[idx] = True
+    make_combination(cnt + 1, idx + 1)
+    link[idx] = False
 
-pick_start(0, 0)
+
+make_combination(0, 0)
+print(answer)
