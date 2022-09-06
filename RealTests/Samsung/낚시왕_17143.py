@@ -91,11 +91,6 @@ def simulate():
     for col in range(c):
         catch_top(col)
         move_all()
-        # print("%d 번째 열" %(col + 1))
-        # for row in grid:
-        #     for elem in row:
-        #         print(elem, end=' ')
-        #     print()
     print(answer)
 
 
