@@ -71,5 +71,7 @@ for tc in range(1, TC + 1):
         # 조합할 행 갯수를 1 ~ d 개까지 순서대로 늘려가면서 확인
         for limit in range(1, d + 1):
             solve(0, 0, limit)
+            # 만약 answer값이 변경이 되었다면 이미 최소로 약품처리를 하여 답을 도출한 것이 된다
+            # 따라서 answer 값이 변경되었다면 바로 반복문을 탈출하여 답을 도출해도 좋을 것 같다.
 
     print("#%d %d" %(tc, answer))
