@@ -6,14 +6,10 @@ CHICKEN = 2
 
 # 변수 입력
 n, m = tuple(map(int, input().split()))
+
 grid = [
     list(map(int, input().split()))
     for _ in range(n)
-]
-
-original = [
-    row[:]
-    for row in grid
 ]
 
 houses = [
