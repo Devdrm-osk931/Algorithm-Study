@@ -101,9 +101,14 @@ def simulate():
             fuel -= s_distance
 
             # 도착지까지의 거리를 구한다
+            og_x, og_y = taxi_x, taxi_y
             bfs(taxi_x, taxi_y, False)
             a_row, a_col = arrive[s_num]
             drive_dist = dist[a_row][a_col]
+
+            if drive_dist == 0 and (a_row, a_col) != (og_x, og_y):
+                print(-1)
+                return False
 
             if fuel >= drive_dist:
                 fuel += drive_dist
@@ -126,6 +131,7 @@ def solve():
                 return
 
     print(fuel)
+
 
 possible = simulate()
 if possible:
