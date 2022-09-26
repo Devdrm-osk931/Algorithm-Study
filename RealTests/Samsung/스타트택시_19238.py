@@ -1,4 +1,4 @@
-# BOJ 스타트택스 19238 골드3
+# BOJ 스타트택시 19238 골드3
 # Samsung
 from collections import deque
 
