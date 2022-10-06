@@ -54,38 +54,45 @@ def in_range(x, y):
     return 0 <= x < N and 0 <= y < N
 
 
-x, y = N//2, N//2
-dir_num = 0
-for move_cnt in move_cnts:
-    for _ in range(move_cnt):
-        nx, ny = x + dxs[dir_num], y + dys[dir_num]
+def add_sand(x, y, amount):
+    global out_sand
 
-        original = sand[nx][ny]
-        total = sand[nx][ny]
-        for dx, dy, percent in patterns[dir_num]:
-            fx, fy = x + dx, y + dy
-            amount = original * percent // 100
+    if in_range(x, y):
+        sand[x][y] += amount
+    else:
+        out_sand += amount
 
-            # 날아가는 곳이 격자 안에 있는 경우
-            if in_range(fx, fy):
-                sand[fx][fy] += amount
-            else:
-                out_sand += amount
 
-            total -= amount
+def end():
+    return not curr_x and not curr_y
 
-        ax, ay = nx + dxs[dir_num], ny + dys[dir_num]
 
-        # a 만큼 날아가는 곳이 격자 안에 있는 경우
-        if in_range(ax, ay):
-            sand[ax][ay] = total
-        else:
-            out_sand += total
+def move():
+    global curr_x, curr_y, curr_dir
 
-        # nx, ny 자리에 있는 모래를 없앤다
-        sand[nx][ny] = 0
-        x, y = nx, ny
+    for move_cnt in move_cnts:
+        for _ in range(move_cnt):
+            prev_x, prev_y = curr_x, curr_y
+            curr_x, curr_y = prev_x + dxs[curr_dir], prev_y + dys[curr_dir]
+            total = sand[curr_x][curr_y]
+            flied = 0
 
-    dir_num = (dir_num + 1) % 4
+            for dx, dy, percent in patterns[curr_dir]:
+                a, b = prev_x + dx, prev_y + dy
+                fly = total * percent // 100
+                add_sand(a, b, fly)
+                flied += fly
 
+            # a% 위치에 대해 처리
+            a_x, a_y = curr_x + dxs[curr_dir], curr_y + dys[curr_dir]
+            add_sand(a_x, a_y, total - flied)
+            sand[curr_x][curr_y] = 0
+
+        curr_dir = (curr_dir + 1) % 4
+
+
+# logic
+curr_x, curr_y = N//2, N//2
+curr_dir = 0
+move()
 print(out_sand)
