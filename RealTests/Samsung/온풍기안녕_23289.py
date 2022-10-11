@@ -1,4 +1,4 @@
-# BOJ 온풍기 안녕!
+# BOJ 온풍기 안녕! Platinum5
 # Samsung
 from collections import deque
 
