@@ -21,7 +21,7 @@ def increase_min_by_one():
             numbers[0][i] += 1
 
 
-def lavitate1():
+def levitate1():
     # 맨 처음 요소를 위에 올려놓는다
     numbers.append(deque([numbers[0].popleft()]))
     while len(numbers) <= len(numbers[0]) - len(numbers[-1]):
@@ -44,7 +44,7 @@ def lavitate1():
             numbers.append(deque(floor))
 
 
-def lavitate2():
+def levitate2():
     while len(numbers[-1]) > n // 4:
         total_length = len(numbers)
         last_length = len(numbers[-1])
@@ -133,14 +133,14 @@ def simulate():
         increase_min_by_one()
 
         # 2. 공중부양 작업 - 90도, 조절
-        lavitate1()
+        levitate1()
         adjust()
 
         # 3. 일렬로 재배열한다
         flatten()
 
         # 4. 공중부양 작업 - 180도
-        lavitate2()
+        levitate2()
         adjust()
 
         # 5. 일렬로 재배치한다
@@ -148,5 +148,6 @@ def simulate():
         cnt += 1
 
     print(cnt)
+
 
 simulate()
