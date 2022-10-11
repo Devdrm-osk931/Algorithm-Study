@@ -39,25 +39,44 @@ def move_fish():
             copy_temp[x][y] = move_temp[x][y][:]
 
 
+# def dfs(x, y, depth, cnt, visit):
+#     global max_eat, eat, shark
+#     if depth == 3:
+#         print(visit)
+#         if max_eat < cnt:
+#             max_eat = cnt
+#             shark = (x, y)
+#             eat = visit[:]
+#         return
+#
+#     for d in range(4):
+#         nx, ny = x + dx[d], y + dy[d]
+#         if in_range(nx, ny):
+#             if (nx, ny) not in visit:
+#                 visit.append((nx, ny))
+#                 dfs(nx, ny, depth + 1, cnt + len(copy_temp[nx][ny]), visit)
+#                 visit.pop()
+#             else:
+#                 dfs(nx, ny, depth + 1, cnt, visit)
+
+
 def dfs(x, y, depth, cnt, visit):
     global max_eat, eat, shark
     if depth == 3:
         if max_eat < cnt:
             max_eat = cnt
-            shark = (x, y)
             eat = visit[:]
-        return
+            shark = x, y
 
+        return
     for d in range(4):
         nx, ny = x + dx[d], y + dy[d]
-        if in_range(nx, ny):
-            if (nx, ny) not in visit:
-                visit.append((nx, ny))
-                dfs(nx, ny, depth + 1, cnt + len(copy_temp[nx][ny]), visit)
-                visit.pop()
-            else:
-                dfs(nx, ny, depth + 1, cnt, visit)
-
+        if in_range(nx, ny) and (nx, ny) not in visit:
+            visit.append((nx, ny))
+            dfs(x, y, depth + 1, cnt + len(copy_temp[nx][ny]), visit)
+            visit.pop()
+        else:
+            dfs(x, y, depth + 1, cnt, visit)
 N = 4
 dxs = [0, -1, -1, -1, 0, 1, 1, 1]
 dys = [-1, -1, 0, 1, 1, 1, 0, -1]
