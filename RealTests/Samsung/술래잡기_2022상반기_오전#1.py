@@ -128,7 +128,11 @@ def move_all_d():
     # temp를 dlist에 반영
     for x in range(n):
         for y in range(n):
-            dlist[x][y] = temp[x][y]
+            if dlist[x][y]:
+                dlist[x][y] = []
+            if temp[x][y]:
+                for elem in temp[x][y]:
+                    dlist[x][y].append(elem)
 
 
 def move_tagger(turn):
