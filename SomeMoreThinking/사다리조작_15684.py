@@ -1,9 +1,9 @@
 import sys
-
+si = sys.stdin.readline
 INT_MAX = sys.maxsize
 
 # 변수 선언 및 입력
-n, m, h = tuple(map(int, input().split()))
+n, m, h = tuple(map(int, si().split()))
 line = [
     [False for _ in range(n + 1)]
     for _ in range(h + 1)
@@ -81,7 +81,7 @@ def find_min(curr_idx, cnt):
 
 
 for _ in range(m):
-    a, b = tuple(map(int, input().split()))
+    a, b = tuple(map(int, si().split()))
     line[a][b] = True
 
 # 선을 놓을 수 있는 목록 생성
