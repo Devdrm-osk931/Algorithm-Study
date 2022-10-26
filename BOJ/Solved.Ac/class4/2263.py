@@ -1,6 +1,9 @@
 # BOJ 2263
 # 트리의 순회
 # 원래 코드: http://colorscripter.com/s/jc1IvM7
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10 ** 9)
 
 n = int(input())
 inorder = list(map(int, input().split()))
